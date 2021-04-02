@@ -37,7 +37,7 @@
       "memoryReservation": 1024,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "http://docker.io/10023678/my-first-container",
+      "image": "361832104945.dkr.ecr.us-east-2.amazonaws.com/my-ecr-repo",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
