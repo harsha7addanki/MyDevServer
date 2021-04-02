@@ -5,7 +5,7 @@ paths = {
 }
 args = {
     "main.htm":{
-        "time":datetime.datetime.now()
+        "paths":paths
     }
 }
 host = "0.0.0.0"
