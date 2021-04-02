@@ -1,0 +1,71 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2.3.0
+        with:
+          # Builder instance
+          builder: ''
+          # Build's context is the set of files located in the specified PATH or URL
+          context: ''
+          # Path to the Dockerfile
+          file: ../Dockerfile
+          # List of build-time variables
+          build-args: ''
+          # List of metadata for an image
+          labels: ''
+          # List of tags
+          tags: ''
+          # Always attempt to pull a newer version of the image
+          pull: true
+          # Sets the target stage to build
+          target: ''
+          # List of extra privileged entitlement (eg. network.host,security.insecure)
+          allow: ''
+          # Do not use cache when building the image
+          no-cache: false
+          # List of target platforms for build
+          platforms: ''
+          # Load is a shorthand for --output=type=docker
+          load: false
+          # Push is a shorthand for --output=type=registry
+          push: false
+          # List of output destinations (format: type=local,dest=path)
+          outputs: ''
+          # List of external cache sources for buildx (eg. user/app:cache, type=local,src=path/to/dir)
+          cache-from: ''
+          # List of cache export destinations for buildx (eg. user/app:cache, type=local,dest=path/to/dir)
+          cache-to: ''
+          # List of secrets to expose to the build (eg. key=string, GIT_AUTH_TOKEN=mytoken)
+          secrets: ''
+          # List of secret files to expose to the build (eg. key=filename, MY_SECRET=./secret.txt)
+          secret-files: ''
+          # List of SSH agent socket or keys to expose to the build
+          ssh: ''
+          # GitHub Token used to authenticate against a repository for Git context
+          github-token: ${{ github.token }}
