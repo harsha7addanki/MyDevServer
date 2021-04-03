@@ -27,7 +27,7 @@ on:
   release:
     types: [created]
 
-name: Deploy to Amazon ECS And Dockerhub
+name: Deploy to Amazon ECS
 
 jobs:
   deploy:
@@ -79,24 +79,3 @@ jobs:
         service: main-app
         cluster: default
         wait-for-service-stability: true
-    - name: Docker Publish
-      # You may pin to the exact commit or the version.
-      # uses: manusa/actions-publish-docker@db938e45d2a3487e0eab9646e83550f554c17af3
-      uses: manusa/actions-publish-docker@v1.1.2
-      with:
-        # Name of the Docker image
-        name: 'dc'
-        # Tag for the Docker image
-        tag: ${{ github.sha }}
-        # Script body to compute tag name for the Docker image, has context as the main function argument
-        tag script: ''
-        # Username for Docker registry
-        username: ${{ secrets.DOCKERUSER }}
-        # Password for Docker registry
-        password: ${{ secrets.DOCKERPASS }}
-        # Registry URL
-        registry: 'docker.io'
-        # Don't skip pull requests
-        include pull requests: true
-        # Path to Dockerfile
-        dockerfile path: ''
